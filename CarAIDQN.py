@@ -1,17 +1,19 @@
+import json
 import math
+import os
 import random
-import matplotlib
-import matplotlib.pyplot as plt
+import sys
 from collections import namedtuple, deque
 from itertools import count
-import sys
+
+import matplotlib
+import matplotlib.pyplot as plt
+import pygame
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import pygame
-import os
+
 from Car import Car
-import json
 
 # Define constants
 SCREEN_WIDTH = 900
@@ -25,7 +27,6 @@ EPS_DECAY = 1000
 TAU = 0.005
 LR = 1e-4
 MEMORY_CAPACITY = 10000
-
 
 # Initialize Pygame
 pygame.init()
@@ -149,7 +150,8 @@ class DQNAgent:
         transitions = self.memory.sample(BATCH_SIZE)
         batch = Transition(*zip(*transitions))
 
-        non_final_mask = torch.tensor(tuple(map(lambda s: s is not None, batch.next_state)), device=device, dtype=torch.bool)
+        non_final_mask = torch.tensor(tuple(map(lambda s: s is not None, batch.next_state)), device=device,
+                                      dtype=torch.bool)
         non_final_next_states = torch.cat([s for s in batch.next_state if s is not None])
         state_batch = torch.cat(batch.state)
         action_batch = torch.cat(batch.action)
@@ -205,6 +207,7 @@ def plot_durations(episode_durations, show_result=False):
         else:
             display.display(plt.gcf())
 
+
 # Main code loop
 def main():
     env = RaceEnvironment()
@@ -253,6 +256,7 @@ def main():
     plot_durations(episode_durations, show_result=True)
     plt.ioff()
     plt.show()
+
 
 if __name__ == "__main__":
     main()
