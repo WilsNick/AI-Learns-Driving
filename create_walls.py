@@ -95,16 +95,16 @@ while running:
     clock.tick(FPS)
 
 # Save walls to a file
-wall_tool.save_walls('walls.json')
+wall_tool.save_walls(os.path.join("assets", "walls3.json"))
 
 # Load walls from the file
-wall_tool.load_walls('walls.json')
+wall_tool.load_walls(os.path.join("assets", "walls3.json"))
 
 
 # Save walls to a file
-wall_tool.save_goals('goals1.json')
+wall_tool.save_goals(os.path.join("assets", "goals3.json"))
 
 # Load walls from the file
-wall_tool.load_goals('goals1.json')
+wall_tool.load_goals(os.path.join("assets", "goals3.json"))
 
 pygame.quit()

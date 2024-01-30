@@ -20,7 +20,7 @@ SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 FONT = pygame.font.Font('freesansbold.ttf', 20)
 
 # Loading goals from a JSON file
-json_file_path = "goals1.json"
+json_file_path = "assets/goals1.json"
 with open(json_file_path, "r") as file:
     GOALS = json.load(file)
 
